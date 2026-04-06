@@ -1,5 +1,6 @@
 Issue: #15189 - Data Integrity Validation on Chat Model Causes Silent Failure and Frontend Deadlock
-Status: Fixed locally, tested, pending PR
+PR: #23455 (open-webui/open-webui)
+Status: Submitted, awaiting maintainer review
 
 Root cause:
   src/lib/components/chat/Messages.svelte
