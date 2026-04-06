@@ -1,0 +1,15 @@
+Issue: #20302 - Newlines in Codeblocks Mysteriously Disappear
+PR: #23451 (open-webui/open-webui)
+Status: Submitted, bot review passed, awaiting maintainer review
+
+Root cause:
+  src/lib/components/chat/Chat.svelte lines 2954, 2997
+  .replaceAll('\n\n', '\n') on submit stripped all blank lines from messages
+
+Fix:
+  Removed .replaceAll('\n\n', '\n') from both on:submit handlers
+  Pass e.detail directly to submitHandler
+
+Testing:
+  Verified blank lines in code blocks preserved after sending
+  Tested with Ollama llama3.2:1b via Docker Compose
