@@ -1,0 +1,21 @@
+Issue: #15189 - Data Integrity Validation on Chat Model Causes Silent Failure and Frontend Deadlock
+Status: Fixed locally, tested, pending PR
+
+Root cause:
+  src/lib/components/chat/Messages.svelte
+  Orphan messages (missing id/role/parentId) in history.messages cause:
+  1. Infinite "Loading..." spinner (parentId undefined !== null is true)
+  2. Blank page (currentId points to orphan, no parent chain to real messages)
+
+Fix (3 changes in Messages.svelte):
+  1. Line 481: !== to != for parentId null check in template (fixes spinner)
+  2. Line 94: !== to != for parentId null check in buildMessages() (fixes traversal)
+  3. Lines 80-112: New findLastValidMessageId() + fallback in buildMessages()
+     - Detects invalid currentId (no id or role)
+     - Scans all messages, picks latest valid one by timestamp
+     - Switches currentId to it, renders real conversation
+
+Testing:
+  Imported malformed chat JSON with 3 orphan messages + 6 valid messages
+  Verified: orphans skipped, full conversation renders normally
+  Test data: progress/2026-04-06_15189-malformed-chat-test.json

@@ -1,0 +1,149 @@
+[
+  {
+    "id": "8a3351f4-79c1-4731-8826-d5783944b0c2",
+    "user_id": "fe7bbdce-2468-4ce4-aa02-00edd8c48e76",
+    "title": "Malformed Chat Test",
+    "chat": {
+      "id": "",
+      "title": "Malformed Chat Test",
+      "models": ["llama3.2:1b"],
+      "params": {},
+      "history": {
+        "messages": {
+          "msg-1": {
+            "id": "msg-1",
+            "parentId": null,
+            "childrenIds": ["msg-2"],
+            "role": "user",
+            "content": "What is Python?",
+            "timestamp": 1750304001
+          },
+          "msg-2": {
+            "id": "msg-2",
+            "parentId": "msg-1",
+            "childrenIds": ["msg-3"],
+            "role": "assistant",
+            "content": "Python is a popular programming language known for its simple syntax.",
+            "model": "llama3.2:1b",
+            "timestamp": 1750304002,
+            "done": true
+          },
+          "orphan-1": {
+            "model": "llama3.2:1b",
+            "content": "ORPHAN 1 - no id, no role, no parentId. Should be skipped."
+          },
+          "msg-3": {
+            "id": "msg-3",
+            "parentId": "msg-2",
+            "childrenIds": ["msg-4"],
+            "role": "user",
+            "content": "What can I build with Python?",
+            "timestamp": 1750304003
+          },
+          "msg-4": {
+            "id": "msg-4",
+            "parentId": "msg-3",
+            "childrenIds": ["msg-5"],
+            "role": "assistant",
+            "content": "You can build web apps, data pipelines, AI models, automation scripts, and more.",
+            "model": "llama3.2:1b",
+            "timestamp": 1750304004,
+            "done": true
+          },
+          "orphan-2": {
+            "content": "ORPHAN 2 - also broken, no id, no role, no parentId."
+          },
+          "msg-5": {
+            "id": "msg-5",
+            "parentId": "msg-4",
+            "childrenIds": ["msg-6"],
+            "role": "user",
+            "content": "Show me a simple Flask example",
+            "timestamp": 1750304005
+          },
+          "msg-6": {
+            "id": "msg-6",
+            "parentId": "msg-5",
+            "childrenIds": [],
+            "role": "assistant",
+            "content": "Here is a simple Flask app:\n\n```python\nfrom flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef hello():\n    return 'Hello World!'\n\nif __name__ == '__main__':\n    app.run(debug=True)\n```",
+            "model": "llama3.2:1b",
+            "timestamp": 1750304006,
+            "done": true
+          },
+          "orphan-3": {
+            "model": "llama3.2:1b",
+            "content": "ORPHAN 3 - this is what currentId points to. Should trigger fallback."
+          }
+        },
+        "currentId": "orphan-3"
+      },
+      "messages": [
+        {
+          "id": "msg-1",
+          "parentId": null,
+          "childrenIds": ["msg-2"],
+          "role": "user",
+          "content": "What is Python?",
+          "timestamp": 1750304001
+        },
+        {
+          "id": "msg-2",
+          "parentId": "msg-1",
+          "childrenIds": ["msg-3"],
+          "role": "assistant",
+          "content": "Python is a popular programming language known for its simple syntax.",
+          "model": "llama3.2:1b",
+          "timestamp": 1750304002,
+          "done": true
+        },
+        {
+          "id": "msg-3",
+          "parentId": "msg-2",
+          "childrenIds": ["msg-4"],
+          "role": "user",
+          "content": "What can I build with Python?",
+          "timestamp": 1750304003
+        },
+        {
+          "id": "msg-4",
+          "parentId": "msg-3",
+          "childrenIds": ["msg-5"],
+          "role": "assistant",
+          "content": "You can build web apps, data pipelines, AI models, automation scripts, and more.",
+          "model": "llama3.2:1b",
+          "timestamp": 1750304004,
+          "done": true
+        },
+        {
+          "id": "msg-5",
+          "parentId": "msg-4",
+          "childrenIds": ["msg-6"],
+          "role": "user",
+          "content": "Show me a simple Flask example",
+          "timestamp": 1750304005
+        },
+        {
+          "id": "msg-6",
+          "parentId": "msg-5",
+          "childrenIds": [],
+          "role": "assistant",
+          "content": "Here is a simple Flask app:\n\n```python\nfrom flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef hello():\n    return 'Hello World!'\n\nif __name__ == '__main__':\n    app.run(debug=True)\n```",
+          "model": "llama3.2:1b",
+          "timestamp": 1750304006,
+          "done": true
+        }
+      ],
+      "tags": [],
+      "timestamp": 1750304001000,
+      "files": []
+    },
+    "updated_at": 1750307488,
+    "created_at": 1750304001,
+    "share_id": null,
+    "archived": false,
+    "pinned": false,
+    "meta": {},
+    "folder_id": null
+  }
+]
